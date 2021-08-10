@@ -23,7 +23,6 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String email, String password) {
-
         Assert.assertNotNull(email);
         Assert.assertNotNull(password);
         sendEmail(email);

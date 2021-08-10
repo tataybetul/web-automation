@@ -1,11 +1,12 @@
 package com.trendyol.webautomation.utils;
 
+import com.google.common.base.Strings;
+import io.cucumber.datatable.internal.difflib.StringUtills;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -29,6 +30,22 @@ public class StepUtils {
             Properties properties = new Properties();
             InputStream inputStream = ClassLoader.getSystemResourceAsStream("data.properties");
             properties.load(inputStream);
+            String browser = System.getProperty("browser");
+            if (browser != null) {
+                properties.setProperty("browser", browser);
+            }
+            String driverPath = System.getProperty("driverPath");
+            if (driverPath != null) {
+                properties.setProperty("driverPath", driverPath);
+            }
+            String email = System.getProperty("email");
+            if (email != null) {
+                properties.setProperty("email", email);
+            }
+            String password = System.getProperty("password");
+            if (password != null) {
+                properties.setProperty("password", password);
+            }
             return properties;
         } catch (Exception exception) {
             throw new RuntimeException("Properties file could not be read");

@@ -20,11 +20,12 @@ public class AddProductToBasketSteps {
     private LoginPage loginPage;
     private HomePage homePage;
     private ProductPage productPage;
+    private Properties properties;
 
     @Before
     public void initialize() {
         StepUtils.readLog4jProperties();
-        Properties properties = StepUtils.getProperties();
+        this.properties = StepUtils.getProperties();
         WebDriver driver = StepUtils.getWebDriver();
         this.driver = driver;
         this.loginPage = new LoginPage(driver, properties);
@@ -42,8 +43,10 @@ public class AddProductToBasketSteps {
         driver.manage().window().maximize();
     }
 
-    @When("^it should login by email \"([^\"]*)\" and password \"([^\"]*)\"$")
-    public void it_should_login(String email, String password) {
+    @When("it should login by email and password")
+    public void it_should_login() {
+        String email = properties.getProperty("email");
+        String password = properties.getProperty("password");
         loginPage.login(email, password);
         PageUtils.sleep(1000);
     }
