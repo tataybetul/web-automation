@@ -1,11 +1,10 @@
 # Trendyol Api Automation
 
-
 ## Get the code
 
 Git:
 
-    git clone ....
+    git clone https://github.com/tataybetul/web-automation.git
     cd web-automation
 
 ### Download chrome driver
